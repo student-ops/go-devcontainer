@@ -1,0 +1,30 @@
+version: '3'
+services:
+  app:
+    image: golang:1.17-bullseye
+    volumes:
+      - ./..:/workspace
+    command: sleep infinity
+    environment:
+      - "GO111MODULE=on"
+      - "GOPROXY=https://proxy.golang.org"
+      - "GONOSUMDB=*.corp.example.com"
+    cap_add: [ "SYS_PTRACE" ]
+    security_opt:
+      - "seccomp=unconfined"
+
+  influxdb:
+    image: influxdb:latest
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+    ports:
+      - 8086:8086
+    environment:
+      - INFLUXDB_DB=devdb
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+      - INFLUXDB_USER=user
+      - INFLUXDB_USER_PASSWORD=user
+
+volumes:
+  influxdb-data:

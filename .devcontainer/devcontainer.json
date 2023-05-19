@@ -1,0 +1,29 @@
+{
+	"name": "Go",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [8086],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "go version",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"go.toolsManagement.checkForUpdates": "local",
+				"go.useLanguageServer": true,
+				"go.gopath": "/go"
+			},
+			"extensions": [
+				"golang.Go"
+			]
+		}
+	},
+
+	// Set `remoteUser` to `root` to connect as root instead.
+	"remoteUser": "root"
+}
