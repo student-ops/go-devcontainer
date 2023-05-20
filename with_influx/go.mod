@@ -1,6 +1,6 @@
 module test
 
-go 1.20
+go 1.17
 
 require github.com/influxdata/influxdb-client-go/v2 v2.12.3
 
